@@ -1,7 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
+# yourappname/views.py
+from django.http import JsonResponse
+import requests
 
-def helloworld(request):
-    return HttpResponse("Hello world")
+def get_wikipedia_details(request, title):
+    wikipedia_api_url = f"https://en.wikipedia.org/w/api.php?action=query&format=json&titles={title}&prop=extracts&exintro&explaintext"
     
+    response = requests.get(wikipedia_api_url)
+    data = response.json()
+
+    page_id = next(iter(data['query']['pages']))
+    page_details = data['query']['pages'][page_id]
+
+    return JsonResponse(page_details)
+

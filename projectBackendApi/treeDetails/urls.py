@@ -1,6 +1,8 @@
+# yourappname/urls.py
 from django.urls import path
-from . import views
+from .views import get_wikipedia_details
 
 urlpatterns = [
-    path('',views.helloworld)
+    path('wikipedia/<str:title>/', get_wikipedia_details),
 ]
+

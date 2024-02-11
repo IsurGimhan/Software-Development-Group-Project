@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_front_end/tree_info.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -116,9 +118,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        onPressed: () {
+          _incrementCounter;
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TreeInfoPage()),
+          );
+        },
+        child: const Text("go to the tree info page"),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

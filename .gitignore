@@ -1,2 +1,4 @@
 ML_model/datasets/
 .vscode
+ML_model/TraindVGG16Model.joblib
+ML_model/vgg16.h5

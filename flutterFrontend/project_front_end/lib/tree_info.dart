@@ -19,7 +19,7 @@ class _DataDisplayPageState extends State<DataDisplayPage> {
   }
 
   Future<void> fetchData() async {
-    final url = Uri.parse('http://192.168.0.103:8000/treeDetails/Mangifera indica/');
+    final url = Uri.parse('http://10.0.2.2:8000/treeDetails/Mangifera indica/');
 
     try {
       final response = await http.get(url);

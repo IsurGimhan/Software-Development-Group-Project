@@ -56,6 +56,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "flutter_lorem",
+      "rootUri": "file:///C:/Users/Rakhitha/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lorem-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -158,7 +164,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-02-22T09:12:48.570798Z",
+  "generated": "2024-02-23T15:29:59.092053Z",
   "generator": "pub",
   "generatorVersion": "3.2.6"
 }

@@ -100,64 +100,62 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(fontSize: 16.0),
             ),
           ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    'SOCIALS :',
-                    style: TextStyle(fontSize: 16.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'SOCIALS :',
+                  style: TextStyle(fontSize: 16.0),
+                ),
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  // color: Colors.yellow,
+                ),
+                child: const Align(
+                  alignment: Alignment.center,
+                  child: FaIcon(
+                    FontAwesomeIcons.linkedin,
+                    size: 30,
                   ),
                 ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    // color: Colors.yellow,
-                  ),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: FaIcon(
-                      FontAwesomeIcons.linkedin,
-                      size: 30,
-                    ),
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  // color: Colors.yellow,
+                ),
+                child: const Align(
+                  alignment: Alignment.center,
+                  child: FaIcon(
+                    FontAwesomeIcons.twitter,
+                    size: 30,
                   ),
                 ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    // color: Colors.yellow,
-                  ),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: FaIcon(
-                      FontAwesomeIcons.twitter,
-                      size: 30,
-                    ),
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  // color: Colors.yellow,
+                ),
+                child: const Align(
+                  alignment: Alignment.center,
+                  child: FaIcon(
+                    FontAwesomeIcons.facebook,
+                    size: 30,
                   ),
                 ),
-                Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    // color: Colors.yellow,
-                  ),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: FaIcon(
-                      FontAwesomeIcons.facebook,
-                      size: 30,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           )
         ],
       ),

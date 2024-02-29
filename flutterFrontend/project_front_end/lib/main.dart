@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:project_front_end/about_us.dart';
+import 'package:project_front_end/settings_page.dart';
+import 'package:project_front_end/tree_history.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,31 +34,97 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey, // Add a GlobalKey to Scaffold
       backgroundColor: const Color.fromRGBO(149, 220, 137, 1),
       appBar: AppBar(
-        //title: const Text('EcoChrono'),
         backgroundColor: const Color.fromARGB(255, 166, 233, 168),
         centerTitle: true,
         leading: IconButton(
-          onPressed: () {},
-          icon: IconButton(
-            icon: const FaIcon(FontAwesomeIcons.bars),
-            onPressed: () {},
-          ),
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer(); // Open the drawer
+          },
+          icon: const FaIcon(FontAwesomeIcons.bars),
         ),
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(25),
-          bottomRight: Radius.circular(25),
-        )),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(25),
+            bottomRight: Radius.circular(25),
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 166, 233, 168),
+              ),
+              child: Stack(
+                children: [
+                  const Center(
+                    child: Text(
+                      'EcoChrono',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 24,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: IconButton(
+                      icon: const FaIcon(
+                        FontAwesomeIcons.xmark,
+                        size: 30,
+                      ),
+                      onPressed: () {
+                        _scaffoldKey.currentState
+                            ?.openEndDrawer(); // Close the Drawer
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              title: const Text('SETTINGS'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SettingsPage(
+                            title: 'gg',
+                          )),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('ABOUT US'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AboutUS(
+                            title: 'gg',
+                          )),
+                );
+              },
+            ),
+            // Add more items as needed
+          ],
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Center(
+            // ignore: sized_box_for_whitespace
             child: Container(
               // color: const Color.fromARGB(255, 73, 62, 62),
               width: 300,
@@ -182,7 +251,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          Center(
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const TreeHistory(title: 'Tree History')),
+              );
+            },
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -198,7 +275,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      // color: Colors.yellow,
                     ),
                     child: const Align(
                       alignment: Alignment.center,
@@ -213,7 +289,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      // color: Color.fromARGB(255, 13, 37, 252)
                     ),
                     child: const Align(
                       alignment: Alignment.centerLeft,
@@ -229,7 +304,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

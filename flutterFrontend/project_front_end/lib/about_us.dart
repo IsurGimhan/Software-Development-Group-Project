@@ -18,20 +18,20 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const AboutUS(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class AboutUS extends StatefulWidget {
+  const AboutUS({super.key, required this.title});
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<AboutUS> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<AboutUS> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () {},
           icon: IconButton(
             icon: const FaIcon(FontAwesomeIcons.arrowLeft),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
         shape: const RoundedRectangleBorder(
@@ -97,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               lorem(paragraphs: 2, words: 50),
-              style: TextStyle(fontSize: 16.0),
+              style: const TextStyle(fontSize: 16.0),
             ),
           ),
           Row(

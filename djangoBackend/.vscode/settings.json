@@ -1,10 +1,11 @@
 {
-    "terminal.integrated.profiles.windows": {
-      "PowerShell": {
-        "source": "PowerShell",
-        "args": ["-NoExit", "-Command", "& .Venv\\Scripts\\activate"]
-      }
-    },
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
-  }
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "args": ["-NoExit", "-Command", "& .Venv\\Scripts\\Activate"]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "python.analysis.typeCheckingMode": "basic"
+}
   

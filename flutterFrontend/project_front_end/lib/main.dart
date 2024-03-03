@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project_front_end/about_us.dart';
+import 'package:project_front_end/leaf_image_taker.dart';
 import 'package:project_front_end/settings_page.dart';
 import 'package:project_front_end/tree_history.dart';
 
@@ -229,20 +230,30 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 300,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      // color: Color.fromARGB(255, 13, 37, 252)
-                    ),
-                    child: const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'TREE DIAMETER',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                leaf_image_take()),
+                      );
+                    },
+                    child: Container(
+                      height: 300,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        // color: Color.fromARGB(255, 13, 37, 252)
+                      ),
+                      child: const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'TREE DIAMETER',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

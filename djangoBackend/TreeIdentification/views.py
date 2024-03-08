@@ -3,7 +3,7 @@ from PIL import Image
 import joblib
 import numpy as np
 from django.views.decorators.csrf import csrf_exempt
-from keras.preprocessing.image import load_img, img_to_array
+from keras.preprocessing.image import img_to_array
 from keras.applications.imagenet_utils import preprocess_input
 import numpy as np
 
@@ -36,7 +36,7 @@ def identify_image(request):
         # Process the prediction output as needed
         response = {'Predicted class' : predicted_class_name}
 
-        return JsonResponse({'Predicted class:': response['Predicted class']}, safe=False)
+        return JsonResponse(response['Predicted class'], safe=False)
 
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 

@@ -36,7 +36,7 @@ def identify_image(request):
         # Process the prediction output as needed
         response = {'Predicted class' : predicted_class_name}
 
-        return JsonResponse(response['Predicted class'], safe=False)
+        return JsonResponse({response['Predicted class']}, safe=False)
 
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 

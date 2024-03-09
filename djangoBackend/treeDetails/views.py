@@ -18,3 +18,5 @@ def get_tree_details(request, title):
     }
 
     return JsonResponse(formatted_response)
+
+# def get_tree_age(request, treeType,circumference):

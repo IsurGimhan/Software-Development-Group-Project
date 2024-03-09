@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
-import 'package:project_front_end/tree_info.dart';
+import 'package:project_front_end/tree_diameter_taker.dart';
 
 
 
@@ -81,11 +81,12 @@ class _HomeScreenState extends State<leaf_image_take> {
           ),
           ElevatedButton(
             onPressed: () async {
-              var treeType = await sendImageToBackend(selectedImage!);
+              // var treeType = await sendImageToBackend(selectedImage!);
+              // ignore: use_build_context_synchronously
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DataDisplayPage(treeType: treeType),
+                  builder: (context) => tree_diamter_take(),
                 ),
               );
             },

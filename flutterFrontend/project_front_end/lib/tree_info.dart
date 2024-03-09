@@ -35,9 +35,7 @@ class _DataDisplayPageState extends State<DataDisplayPage> {
         title: const Text('Data Display'),
       ),
       body: Center(
-        child: widget.treeType != null
-            ? Text(widget.treeType!)
-            : const Text('No tree type available'),
+        child: Text(widget.treeType)   
       ),
     );
   }

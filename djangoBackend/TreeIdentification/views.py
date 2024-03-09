@@ -3,7 +3,7 @@ from PIL import Image
 import joblib
 import numpy as np
 from django.views.decorators.csrf import csrf_exempt
-from keras.preprocessing.image import img_to_array
+from keras.preprocessing.image import load_img, img_to_array
 from keras.applications.imagenet_utils import preprocess_input
 import numpy as np
 

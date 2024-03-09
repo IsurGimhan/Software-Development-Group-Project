@@ -19,4 +19,8 @@ def get_tree_details(request, title):
 
     return JsonResponse(formatted_response)
 
-# def get_tree_age(request, treeType,circumference):
+def get_tree_age(request, treeType,circumference):
+
+    treeDiameter = round((circumference / 3.14),2)
+
+

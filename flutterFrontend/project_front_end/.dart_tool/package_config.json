@@ -86,6 +86,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "flutter_lorem",
+      "rootUri": "file:///C:/Users/Isuru%20gimhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lorem-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///C:/Users/Isuru%20gimhan/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17",
       "packageUri": "lib/",
@@ -102,6 +108,12 @@
       "rootUri": "file:///C:/src/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///C:/Users/Isuru%20gimhan/AppData/Local/Pub/Cache/hosted/pub.dev/font_awesome_flutter-10.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "http",
@@ -168,6 +180,12 @@
       "rootUri": "file:///C:/Users/Isuru%20gimhan/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "logger",
+      "rootUri": "file:///C:/Users/Isuru%20gimhan/AppData/Local/Pub/Cache/hosted/pub.dev/logger-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "matcher",
@@ -272,7 +290,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-02-19T06:11:29.084285Z",
+  "generated": "2024-03-09T12:52:18.994042Z",
   "generator": "pub",
   "generatorVersion": "3.2.6"
 }

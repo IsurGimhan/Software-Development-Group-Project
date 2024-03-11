@@ -6,11 +6,6 @@ import 'package:logger/logger.dart';
 import 'package:project_front_end/tree_diameter_taker.dart';
 
 
-
-void main() {
-  runApp(MyApp());
-}
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -81,12 +76,12 @@ class _HomeScreenState extends State<leaf_image_take> {
           ),
           ElevatedButton(
             onPressed: () async {
-              // var treeType = await sendImageToBackend(selectedImage!);
+              var treeType = await sendImageToBackend(selectedImage!);
               // ignore: use_build_context_synchronously
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => tree_diamter_take(),
+                  builder: (context) => tree_diamter_take(treeType : treeType),
                 ),
               );
             },

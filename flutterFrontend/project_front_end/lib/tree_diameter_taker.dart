@@ -1,34 +1,35 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:project_front_end/tree_info.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: tree_diamter_take(),
+    return const MaterialApp(
+      home: tree_diamter_take(treeType: '',),
     );
   }
 }
 
 class tree_diamter_take extends StatefulWidget {
+  final String treeType;
+  const tree_diamter_take({super.key, required this.treeType});
   @override
-  State<tree_diamter_take> createState() => _HomeScreenState();
+  State<tree_diamter_take> createState() => _HomeScreenState(treeType);
 }
 
 class _HomeScreenState extends State<tree_diamter_take> {
   TextEditingController _textEditingController = TextEditingController();
   bool _isInputValid = false;
+  
+  _HomeScreenState(String treeType);
 
  @override
  Widget build(BuildContext context) {
+  String treeType = widget.treeType;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Popup Window Example'),
+        title: const Text('ECOCHRONO'),
       ),
       body: Center(
         child: ElevatedButton(
@@ -39,10 +40,10 @@ class _HomeScreenState extends State<tree_diamter_take> {
                 return StatefulBuilder(
                   builder: (context, setState) {
                     return AlertDialog(
-                      title: Text('Enter Something'),
+                      title: const Text('Enter Something'),
                       content: TextField(
                         controller: _textEditingController,
-                        decoration: InputDecoration(hintText: 'Enter double value'),
+                        decoration: const InputDecoration(hintText: 'Enter double value'),
                         onChanged: (value) {
                           setState(() {
                             _isInputValid = double.tryParse(value) != null;
@@ -54,19 +55,20 @@ class _HomeScreenState extends State<tree_diamter_take> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text('Cancel'),
+                          child: const Text('Cancel'),
                         ),
                         ElevatedButton(
                           onPressed: _isInputValid
                               ? () {
+                                String circumference = _textEditingController.text;
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => DataDisplayPage(treeType: '',)),
+                                    MaterialPageRoute(builder: (context) => DataDisplayPage(treeType:treeType,circumference: circumference,)),
                                   );
                                   
                                 }
                               : null,
-                          child: Text('Submit'),
+                          child: const Text('Submit'),
                         ),
                       ],
                     );
@@ -75,7 +77,7 @@ class _HomeScreenState extends State<tree_diamter_take> {
               },
             );
           },
-          child: Text('Show Popup'),
+          child: const Text('Show Popup'),
         ),
       ),
     );

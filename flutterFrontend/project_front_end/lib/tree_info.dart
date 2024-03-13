@@ -151,28 +151,9 @@ class _DataDisplayPageState extends State<DataDisplayPage> {
     }
   }
 
-  Function saveButton() {
+  // Function saveButton() {
     
-  }
+  // }
 
-  Future<void> fetchData(String TreeType, String Circumference) async {
-    final treeType = TreeType.replaceAll('"', '');
-    final circumference = Circumference.replaceAll('"', '');
-    final url =
-        Uri.parse('http://10.0.2.2:8000/treeDetails/$treeType/$circumference');
 
-    try {
-      final response = await http.get(url);
-
-      if (response.statusCode == 200) {
-        setState(() {
-          dataList = [json.decode(response.body)];
-        });
-      } else {
-        print('Request failed with status: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Exception occurred: $e');
-    }
-  }
 }

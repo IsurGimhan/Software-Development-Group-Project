@@ -1,100 +1,86 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:project_front_end/tree_info.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: tree_diamter_take(),
+    return const MaterialApp(
+      home: tree_diamter_take(treeType: '',),
     );
   }
 }
 
 class tree_diamter_take extends StatefulWidget {
+  final String treeType;
+  const tree_diamter_take({super.key, required this.treeType});
   @override
-  State<tree_diamter_take> createState() => _HomeScreenState();
+  State<tree_diamter_take> createState() => _HomeScreenState(treeType);
 }
 
 class _HomeScreenState extends State<tree_diamter_take> {
-  File? selectedImage;
+  TextEditingController _textEditingController = TextEditingController();
+  bool _isInputValid = false;
+  
+  _HomeScreenState(String treeType);
 
-  @override
-  Widget build(BuildContext context) {
+ @override
+ Widget build(BuildContext context) {
+  String treeType = widget.treeType;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('image select panel'),
+        title: const Text('ECOCHRONO'),
       ),
       body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          selectedImage != null
-              ? Image.file(selectedImage!)
-              : const Text('no image is selected'),
-          ElevatedButton(
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                isScrollControlled: true,
-                builder: (BuildContext context) {
-                  return Container(
-                    height: 200,
-                    width: 500,
-                    color: Colors.white,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // gallery selecting button
-                        ElevatedButton.icon(
+        child: ElevatedButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return StatefulBuilder(
+                  builder: (context, setState) {
+                    return AlertDialog(
+                      title: const Text('Enter Something'),
+                      content: TextField(
+                        controller: _textEditingController,
+                        decoration: const InputDecoration(hintText: 'Enter double value'),
+                        onChanged: (value) {
+                          setState(() {
+                            _isInputValid = double.tryParse(value) != null;
+                          });
+                        },
+                      ),
+                      actions: <Widget>[
+                        TextButton(
                           onPressed: () {
-                            selectImageFromGallery();
+                            Navigator.of(context).pop();
                           },
-                          icon: const Icon(Icons.photo),
-                          label: const Text('Browse Gallery'),
+                          child: const Text('Cancel'),
                         ),
-                        const Text('OR'),
-                        // camera selecting button
-                        ElevatedButton.icon(
-                          onPressed: () {
-                            captrueImageFromCamera();
-                          },
-                          icon: const Icon(Icons.camera_alt),
-                          label: const Text('Use Camera'),
+                        ElevatedButton(
+                          onPressed: _isInputValid
+                              ? () {
+                                String circumference = _textEditingController.text;
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => DataDisplayPage(treeType:treeType,circumference: circumference,)),
+                                  );
+                                  
+                                }
+                              : null,
+                          child: const Text('Submit'),
                         ),
                       ],
-                    ),
-                  );
-                },
-              );
-            },
-            child: const Text('Select image'),
-          ),
-        ]),
+                    );
+                  },
+                );
+              },
+            );
+          },
+          child: const Text('Show Popup'),
+        ),
       ),
     );
   }
-
-  Future selectImageFromGallery() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    if (returnedImage == null) return;
-    setState(() {
-      selectedImage = File(returnedImage.path);
-    });
-  }
-
-  Future captrueImageFromCamera() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-
-    if (returnedImage == null) return;
-    setState(() {
-      selectedImage = File(returnedImage.path);
-    });
-  }
 }
+

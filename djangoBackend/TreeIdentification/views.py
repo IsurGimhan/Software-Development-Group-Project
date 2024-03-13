@@ -28,7 +28,7 @@ def identify_image(request):
 
         prediction = model.predict(x)
         predicted_class_index = np.argmax(prediction)
-        class_names = ['Alstonia_scholaris','Beech','Cashew','Jackfruit','Kashid','Mango','Nilgiri','Pongamia_pinnata','Populus_tremula','Ulmus_glabra']
+        class_names = ['Alstonia scholaris','Beech','Cashew','Jackfruit','Kashid','Mango','Nilgiri','Pongamia_pinnata','Populus_tremula','Ulmus_glabra']
 
         # Get the class name using the predicted_class_index
         predicted_class_name = class_names[predicted_class_index]
@@ -36,7 +36,7 @@ def identify_image(request):
         # Process the prediction output as needed
         response = {'Predicted class' : predicted_class_name}
 
-        return JsonResponse({'Predicted class:': response['Predicted class']}, safe=False)
+        return JsonResponse(predicted_class_name, safe=False)
 
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 

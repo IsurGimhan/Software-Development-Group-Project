@@ -44,13 +44,115 @@ class _DataDisplayPageState extends State<DataDisplayPage> {
           : ListView.builder(
               itemCount: dataList.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(dataList[index]['title']),
-                  subtitle: Text(dataList[index]['tree age']),
+                bool? isChecked = false;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        dataList[index]['title'],
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Card(
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: SizedBox(
+                          height: 460,
+                          child: ListView(
+                            scrollDirection: Axis.vertical,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  dataList[index]['description'],
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Card(
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Estimated Age: ${dataList[index]['tree age']}',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          value: isChecked,
+                          onChanged: (newValue) {
+                            setState(() {
+                              isChecked = newValue ?? false;
+                            });
+                          },
+                        ),
+                        Text('Save current Location'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            // Handle save button press
+                          },
+                          child: Text('Save'),
+                        ),
+                      ],
+                    ),
+                  ],
                 );
               },
             ),
     );
+  }
+
+  Future<void> fetchData(String TreeType, String Circumference) async {
+    final treeType = TreeType.replaceAll('"', '');
+    final circumference = Circumference.replaceAll('"', '');
+    final url =
+        Uri.parse('http://10.0.2.2:8000/treeDetails/$treeType/$circumference');
+
+    try {
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        setState(() {
+          dataList = [json.decode(response.body)];
+        });
+      } else {
+        print('Request failed with status: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Exception occurred: $e');
+    }
+  }
+
+  Function saveButton() {
+    
   }
 
   Future<void> fetchData(String TreeType, String Circumference) async {

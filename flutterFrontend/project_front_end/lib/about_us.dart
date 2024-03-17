@@ -113,25 +113,6 @@ class _MyHomePageState extends State<AboutUS> {
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      "Meet the Minds Behind the App:\n",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      "Rakhitha:\n I'm a Flutter developer for EcoChrono, working closely with the team to build a seamless and user-friendly experience for our users. My passion for mobile app development and creating beautiful user interfaces (UIs) made me excited to be a part of this project. Witnessing the app come to life and empower users to connect with nature is truly fulfilling!\n\n"
-                      "[Team member 1 name] (Contributor): [ Briefly describe their role and expertise relevant to the app].\n\n"
-                      "[Team member 2 name] (Contributor): [ Briefly describe their role and expertise relevant to the app] (You can add more team members if applicable).\n\n"
-                      "[Team member 1 name] (Contributor): [ Briefly describe their role and expertise relevant to the app].\n\n"
-                      "[Team member 2 name] (Contributor): [ Briefly describe their role and expertise relevant to the app] (You can add more team members if applicable).\n\n"
-                      "[Team member 1 name] (Contributor): [ Briefly describe their role and expertise relevant to the app].\n\n"
-                      "[Team member 2 name] (Contributor): [ Briefly describe their role and expertise relevant to the app] (You can add more team members if applicable).\n\n",
-                      style: TextStyle(fontSize: 16.0),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
                       "Our Motivation:\n",
                       style: TextStyle(
                         fontSize: 16.0,

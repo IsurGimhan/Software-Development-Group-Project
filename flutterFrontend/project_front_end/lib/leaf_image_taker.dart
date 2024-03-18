@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:project_front_end/tree_diameter_taker.dart';
 
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,6 @@ class leaf_image_take extends StatefulWidget {
 class _HomeScreenState extends State<leaf_image_take> {
   File? selectedImage;
   var logger = Logger();
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +43,7 @@ class _HomeScreenState extends State<leaf_image_take> {
                   return Container(
                     height: 200,
                     width: 500,
-                    color: Colors.white,
+                    color: const Color.fromRGBO(149, 220, 137, 1),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -81,13 +79,12 @@ class _HomeScreenState extends State<leaf_image_take> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => tree_diamter_take(treeType : treeType),
+                  builder: (context) => tree_diamter_take(treeType: treeType),
                 ),
               );
             },
             child: const Text("Next page"),
           ),
-
         ]),
       ),
     );
@@ -101,9 +98,9 @@ class _HomeScreenState extends State<leaf_image_take> {
     if (returnedImage == null) return;
     setState(() {
       selectedImage = File(returnedImage.path);
-
     });
   }
+
   // this method will capture the image from the camera and save it to the returnedImage variable
   Future captureImageFromCamera() async {
     final returnedImage =

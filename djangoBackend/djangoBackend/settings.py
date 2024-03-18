@@ -86,9 +86,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ECOCHRONO',
-        'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'SdgpGroupSE-87'
+        'PASSWORD': 'SdgpGroupSE-87',
+        'HOST': '35.244.40.45',
+        'PORT': '3306',
     }
 }
 

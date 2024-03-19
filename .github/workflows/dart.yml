@@ -24,6 +24,9 @@ jobs:
       # - uses: dart-lang/setup-dart@v1
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
 
+      - name: Navigate to directory with pubspec.yml
+        run: cd flutterFrontend/project_front_end
+
       - name: Install dependencies
         run: dart pub get
 

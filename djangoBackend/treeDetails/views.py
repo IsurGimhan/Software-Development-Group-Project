@@ -12,13 +12,12 @@ def get_tree_details(request, title, circumference):
     page_id = next(iter(data['query']['pages']))
     page_details = data['query']['pages'][page_id]
 
-    # try:
-    #     tree_species = TreeSpeciesDetail.objects.get(specie_name=title)
-    #     growth_factor = tree_species.specie_growth_factor
-    # except TreeSpeciesDetail.DoesNotExist:
-    #     growth_factor = 1.0  # Default growth factor if not found
+    try:
+        tree_species = TreeSpeciesDetail.objects.get(specie_name=title)
+        growth_factor = tree_species.specie_growth_factor
+    except TreeSpeciesDetail.DoesNotExist:
+        growth_factor = 1.0  # Default growth factor if not found
 
-    growth_factor = 1.5
     circumference = float(circumference)
     age = round((circumference/3.14),2)
     age = age * float(growth_factor)

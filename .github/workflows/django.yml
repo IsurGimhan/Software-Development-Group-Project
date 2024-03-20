@@ -25,6 +25,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r djangoBackend/requirements.txt
 
+    - name: Navigate to the Django project directory
+      run: cd djangoBackend
+
     - name: Run tests
       run: |
         djangoBackend/python manage.py test

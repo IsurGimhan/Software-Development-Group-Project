@@ -30,7 +30,7 @@ jobs:
 
     - name: Run tests
       run: |
-        djangoBackend/python manage.py test
+        python manage.py test
 
     # - name: Check formatting
     #   run: |

@@ -31,6 +31,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<SettingsPage> {
+  bool isDarkMode = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,9 +115,9 @@ class _MyHomePageState extends State<SettingsPage> {
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         width: 5,
-                        color: Color.fromRGBO(149, 220, 137, 1),
+                        color: const Color.fromRGBO(149, 220, 137, 1),
                       ),
-                      color: Color.fromARGB(255, 255, 255, 255)),
+                      color: const Color.fromARGB(255, 255, 255, 255)),
                   child: const Align(
                     alignment: Alignment.center,
                     child: Text(
@@ -134,9 +136,9 @@ class _MyHomePageState extends State<SettingsPage> {
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         width: 5,
-                        color: Color.fromRGBO(149, 220, 137, 1),
+                        color: const Color.fromRGBO(149, 220, 137, 1),
                       ),
-                      color: Color.fromARGB(255, 255, 255, 255)),
+                      color: const Color.fromARGB(255, 255, 255, 255)),
                   child: const Align(
                     alignment: Alignment.center,
                     child: Text(

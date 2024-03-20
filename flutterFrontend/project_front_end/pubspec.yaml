@@ -32,10 +32,10 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^10.7.0
-  flutter_lorem: ^2.0.0
   image_picker: ^1.0.7
   http: ^1.2.0
   logger: ^2.1.0
+  webview_flutter: ^4.7.0
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +59,8 @@ flutter:
       - assets/Page01.png
       - assets/aboutUs.png
       - assets/history.png
+      - assets/logo.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -15,5 +15,3 @@ def upload_image(request):
         except requests.exceptions.RequestException as e:
             return JsonResponse({'error': str(e)}, status=500)  # Return error message as JSON
     return JsonResponse({'error': 'Invalid request'}, status=400)
-
-

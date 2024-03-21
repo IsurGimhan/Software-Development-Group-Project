@@ -28,7 +28,7 @@ def identify_image(request):
 
         prediction = model.predict(x)
         predicted_class_index = np.argmax(prediction)
-        class_names = ['Alstonia scholaris','Beech','Cashew','Jackfruit','Kashid','Mango','Nilgiri','Pongamia_pinnata','Populus_tremula','Ulmus_glabra']
+        class_names = ['Alstonia scholaris','Beech','Cashew','Jackfruit','Senna siamea','Mangifera indica','Eucalyptus globulus','Pongamia','Populus tremula','Ulmus_glabra']
 
         # Get the class name using the predicted_class_index
         predicted_class_name = class_names[predicted_class_index]

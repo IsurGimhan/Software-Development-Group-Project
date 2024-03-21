@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 def upload_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
         image = request.FILES['image']
-        ml_url = 'http://127.0.0.1:9000/modelendPoint/identify_image/'
+        ml_url = 'https://ml-model-bpcfovoknq-uc.a.run.app/modelendPoint/identify_image/'
         try:
             response = requests.post(ml_url, files={'image': image})
             response.raise_for_status()  # Raise an exception for bad status codes

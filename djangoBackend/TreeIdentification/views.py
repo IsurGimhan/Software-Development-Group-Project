@@ -1,44 +1,19 @@
-# from django.http import JsonResponse
-# from PIL import Image
-# import joblib
-# import numpy as np
-# from django.views.decorators.csrf import csrf_exempt
-# from keras.preprocessing.image import load_img, img_to_array
-# from keras.applications.imagenet_utils import preprocess_input
-# import numpy as np
+from django.http import JsonResponse
+import requests
+from django.views.decorators.csrf import csrf_exempt
 
-# def get_model():
-#     global model
-#     model = joblib.load('modelVGG19.pkl')
-
-
-# @csrf_exempt
-# def identify_image(request):
-#     get_model()
-#     if request.method == 'POST':
-#         image_file = request.FILES.get('image')
-#         image = Image.open(image_file)
-#         image = image.resize((224, 224))
-
-        
-
-#         x = img_to_array(image)
-#         x = np.expand_dims(x, axis=0)
-#         x = preprocess_input(x)
-
-#         prediction = model.predict(x)
-#         predicted_class_index = np.argmax(prediction)
-#         class_names = ['Alstonia scholaris','Beech','Cashew','Jackfruit','Senna siamea','Mangifera indica','Eucalyptus globulus','Pongamia','Populus tremula','Ulmus_glabra']
-
-#         # Get the class name using the predicted_class_index
-#         predicted_class_name = class_names[predicted_class_index]
-
-#         # Process the prediction output as needed
-#         response = {'Predicted class' : predicted_class_name}
-
-#         return JsonResponse(predicted_class_name, safe=False)
-
-#     return JsonResponse({'error': 'Method not allowed'}, status=405)
-
+@csrf_exempt
+def upload_image(request):
+    if request.method == 'POST' and request.FILES.get('image'):
+        image = request.FILES['image']
+        ml_url = 'https://ml-model-bpcfovoknq-uc.a.run.app/modelendPoint/identify_image/'
+        try:
+            response = requests.post(ml_url, files={'image': image})
+            response.raise_for_status()  # Raise an exception for bad status codes
+            ml_result = response.text.strip('"')
+            return JsonResponse(ml_result, safe=False)
+        except requests.exceptions.RequestException as e:
+            return JsonResponse({'error': str(e)}, status=500)  # Return error message as JSON
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 

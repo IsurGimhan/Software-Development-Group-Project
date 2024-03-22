@@ -29,7 +29,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '192.168.0.103',
-    '10.0.2.2'
+    '10.0.2.2',
+    'sdgp-django-backend-qxipk4pjwq-de.a.run.app'
 
 ]
 

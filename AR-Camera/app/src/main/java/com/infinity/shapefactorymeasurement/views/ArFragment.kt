@@ -172,8 +172,8 @@ class ArFragment: Fragment(R.layout.fragment_ar) {
         difference = Vector3.subtract(node1Pos, node2Pos)
         totalLength += difference!!.length()
         val rotationFromAToB = Quaternion.lookRotation(
-            difference!!.normalized(),
-            Vector3.up()
+                difference!!.normalized(),
+                Vector3.up()
         )
         //setting lines between points
         lineBetween = AnchorNode().apply {
@@ -195,51 +195,51 @@ class ArFragment: Fragment(R.layout.fragment_ar) {
 
     private fun initObjects() {
         MaterialFactory.makeOpaqueWithColor(requireContext(), Color(rgb(219, 68, 55)))
-            .thenAccept { material: Material? ->
-                heightLineRender = ShapeFactory.makeCube(Vector3(.015f, 1f, 1f), zero(), material)
-                heightLineRender!!.apply {
-                    isShadowCaster = false
-                    isShadowReceiver = false
+                .thenAccept { material: Material? ->
+                    heightLineRender = ShapeFactory.makeCube(Vector3(.015f, 1f, 1f), zero(), material)
+                    heightLineRender!!.apply {
+                        isShadowCaster = false
+                        isShadowReceiver = false
+                    }
                 }
-            }
 
         MaterialFactory.makeTransparentWithColor(requireContext(), Color(rgb(23, 107, 230)))
-            .thenAccept { material: Material? ->
-                pointRender = ShapeFactory.makeCylinder(0.02f, 0.0003f, zero(), material)
-                pointRender!!.isShadowCaster = false
-                pointRender!!.isShadowReceiver = false
-            }
+                .thenAccept { material: Material? ->
+                    pointRender = ShapeFactory.makeCylinder(0.02f, 0.0003f, zero(), material)
+                    pointRender!!.isShadowCaster = false
+                    pointRender!!.isShadowReceiver = false
+                }
 
         ViewRenderable.builder()
-            .setView(requireContext() , R.layout.distance)
-            .build()
-            .thenAccept { renderable: ViewRenderable ->
-                renderable.apply {
-                    isShadowCaster = false
-                    isShadowReceiver = false
-                    verticalAlignment = ViewRenderable.VerticalAlignment.BOTTOM
+                .setView(requireContext() , R.layout.distance)
+                .build()
+                .thenAccept { renderable: ViewRenderable ->
+                    renderable.apply {
+                        isShadowCaster = false
+                        isShadowReceiver = false
+                        verticalAlignment = ViewRenderable.VerticalAlignment.BOTTOM
+                    }
+                    viewRenderable = renderable
                 }
-                viewRenderable = renderable
-            }
 
         Texture.builder()
-            .setSource(requireContext(), R.drawable.aim)
-            .build().thenAccept { texture ->
-                MaterialFactory.makeTransparentWithTexture(requireContext(), texture)
-                    .thenAccept { material: Material? ->
-                        aimRender = ShapeFactory.makeCylinder(0.08f, 0f, zero(), material)
-                        aimRender!!.isShadowCaster = false
-                        aimRender!!.isShadowReceiver = false
-                    }
-            }
-        MaterialFactory.makeOpaqueWithColor(requireContext(), Color(rgb(23, 107, 230)))
-            .thenAccept { material: Material? ->
-                widthLineRender = ShapeFactory.makeCube(Vector3(.01f, 0f, 1f), zero(), material)
-                widthLineRender!!.apply {
-                    isShadowCaster = false
-                    isShadowReceiver = false
+                .setSource(requireContext(), R.drawable.aim)
+                .build().thenAccept { texture ->
+                    MaterialFactory.makeTransparentWithTexture(requireContext(), texture)
+                            .thenAccept { material: Material? ->
+                                aimRender = ShapeFactory.makeCylinder(0.08f, 0f, zero(), material)
+                                aimRender!!.isShadowCaster = false
+                                aimRender!!.isShadowReceiver = false
+                            }
                 }
-            }
+        MaterialFactory.makeOpaqueWithColor(requireContext(), Color(rgb(23, 107, 230)))
+                .thenAccept { material: Material? ->
+                    widthLineRender = ShapeFactory.makeCube(Vector3(.01f, 0f, 1f), zero(), material)
+                    widthLineRender!!.apply {
+                        isShadowCaster = false
+                        isShadowReceiver = false
+                    }
+                }
     }
 
     private fun refreshAim(hitResult: HitResult, motionEvent: MotionEvent) {
@@ -291,7 +291,7 @@ class ArFragment: Fragment(R.layout.fragment_ar) {
                 difference = Vector3.subtract(node1Pos, node2Pos)
                 totalLength += difference!!.length()
                 val rotationFromAToB =
-                    Quaternion.lookRotation(difference!!.normalized(), Vector3.up())
+                        Quaternion.lookRotation(difference!!.normalized(), Vector3.up())
                 //setting lines between points
                 AnchorNode().apply {
                     setParent(arFragment.arSceneView.scene)
@@ -311,32 +311,32 @@ class ArFragment: Fragment(R.layout.fragment_ar) {
     }
 
     private fun initTextBoxes(
-        meters: Float,
-        transformableNode: AnchorNode,
-        isFromCreateNewAnchor: Boolean
+            meters: Float,
+            transformableNode: AnchorNode,
+            isFromCreateNewAnchor: Boolean
     ) {
 
         if (isFromCreateNewAnchor) {
             ViewRenderable.builder()
-                .setView(requireContext() , R.layout.distance)
-                .build()
-                .thenAccept { renderable: ViewRenderable ->
-                    renderable.apply {
-                        isShadowCaster = false
-                        isShadowReceiver = false
-                        verticalAlignment = ViewRenderable.VerticalAlignment.BOTTOM
+                    .setView(requireContext() , R.layout.distance)
+                    .build()
+                    .thenAccept { renderable: ViewRenderable ->
+                        renderable.apply {
+                            isShadowCaster = false
+                            isShadowReceiver = false
+                            verticalAlignment = ViewRenderable.VerticalAlignment.BOTTOM
+                        }
+                        addDistanceCard(renderable, meters, transformableNode)
                     }
-                    addDistanceCard(renderable, meters, transformableNode)
-                }
         } else {
             addDistanceCard(viewRenderable, meters, transformableNode)
         }
     }
 
     private fun addDistanceCard(
-        distanceRenderable: ViewRenderable,
-        meters: Float,
-        transformableNode: AnchorNode
+            distanceRenderable: ViewRenderable,
+            meters: Float,
+            transformableNode: AnchorNode
     ) {
         distanceInMeters = distanceRenderable.view as CardView
         val metersString: String = if (meters < 1f) {
@@ -357,12 +357,12 @@ class ArFragment: Fragment(R.layout.fragment_ar) {
         val x = this.resources.displayMetrics.widthPixels.toFloat() / 2
         val y = this.resources.displayMetrics.heightPixels.toFloat() / 2
         val motionEvent = MotionEvent.obtain(
-            downTime,
-            eventTime,
-            MotionEvent.ACTION_UP,
-            x,
-            y,
-            0
+                downTime,
+                eventTime,
+                MotionEvent.ACTION_UP,
+                x,
+                y,
+                0
         )
         arFragment.arSceneView.dispatchTouchEvent(motionEvent)
     }
@@ -379,9 +379,9 @@ class ArFragment: Fragment(R.layout.fragment_ar) {
     }
 
     fun clearAnchors() {
-        for (i in currentAnchorNode){
-            arFragment.arSceneView.scene.removeChild(i)
-        }
+     for (i in currentAnchorNode){
+         arFragment.arSceneView.scene.removeChild(i)
+     }
         currentAnchorNode.clear()
         currentAnchor.clear()
         labelArray.clear()

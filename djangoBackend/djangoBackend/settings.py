@@ -23,14 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^4&vp5he#p)(_d%sj8!$eek30_#o3%jpwx@vgx^v8dykb@n-dw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+CSRF_TRUSTED_ORIGINS = ['https://vgg19-bpcfovoknq-uc.a.run.app']
+
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '192.168.0.103',
     '10.0.2.2',
-    'sdgp-django-backend-qxipk4pjwq-de.a.run.app'
+    'vgg19-bpcfovoknq-uc.a.run.app'
 
 ]
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sqlite_flutter_crud/Authtentication/signup.dart';
 import 'package:sqlite_flutter_crud/JsonModels/users.dart';
 import 'package:sqlite_flutter_crud/SQLite/sqlite.dart';
-//import 'package:sqlite_flutter_crud/Views/notes.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,39 +11,39 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  //We need two text editing controller
-
-  //TextEditing controller to control the text when we enter into it
+  // Text editing controllers for username and password
   final username = TextEditingController();
   final password = TextEditingController();
 
-  //A bool variable for show and hide password
+  // Boolean variable to toggle password visibility
   bool isVisible = false;
 
-  //Here is our bool variable
+  // Boolean variable to track login status
   bool isLoginTrue = false;
 
+  // Database helper instance for SQLite operations
   final db = DatabaseHelper();
 
-  //Now we should call this function in login button
+  // Function to handle login process
   login() async {
-    var response = await db
-        .login(Users(usrName: username.text, usrPassword: password.text));
+    var response = await db.login(
+        Users(usrName: username.text, usrPassword: password.text));
     if (response == true) {
-      //If login is correct, then goto notes
+      // If login is successful, navigate to sign up screen
       if (!mounted) return;
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const SignUp()));
     } else {
-      //If not, true the bool value to show error message
+      // If login fails, set the login error flag to true
       setState(() {
         isLoginTrue = true;
       });
     }
   }
 
-  //We have to create global key for our form
+  // Global form key
   final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,26 +51,25 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
-            //We put all our textfield to a form to be controlled and not allow as empty
             child: Form(
               key: formKey,
               child: Column(
                 children: [
-                  //Username field
-
-                  //Before we show the image, after we copied the image we need to define the location in pubspec.yaml
+                  // Logo image
                   Image.asset(
                     "lib/assets/login.png",
                     width: 210,
                   ),
                   const SizedBox(height: 15),
+
+                  // Username field
                   Container(
                     margin: const EdgeInsets.all(8),
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.deepPurple.withOpacity(.2)),
+                        color: const Color.fromARGB(129, 3, 170, 67).withOpacity(.2)),
                     child: TextFormField(
                       controller: username,
                       validator: (value) {
@@ -88,14 +86,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
 
-                  //Password field
+                  // Password field
                   Container(
                     margin: const EdgeInsets.all(8),
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.deepPurple.withOpacity(.2)),
+                        color: const Color.fromARGB(129, 3, 170, 67).withOpacity(.2)),
                     child: TextFormField(
                       controller: password,
                       validator: (value) {
@@ -111,9 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: "Password",
                           suffixIcon: IconButton(
                               onPressed: () {
-                                //In here we will create a click to show and hide the password a toggle button
                                 setState(() {
-                                  //toggle button
                                   isVisible = !isVisible;
                                 });
                               },
@@ -124,21 +120,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
 
                   const SizedBox(height: 10),
-                  //Login button
+
+                  // Login button
                   Container(
                     height: 55,
                     width: MediaQuery.of(context).size.width * .9,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.deepPurple),
+                        color: const Color.fromARGB(214, 24, 73, 220).withOpacity(1)),
                     child: TextButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            //Login method will be here
+                            // Call the login function if form is valid
                             login();
-
-                            //Now we have a response from our sqlite method
-                            //We are going to create a user
                           }
                         },
                         child: const Text(
@@ -147,14 +141,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         )),
                   ),
 
-                  //Sign up button
+                  // Sign up button
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text("Don't have an account?"),
                       TextButton(
                           onPressed: () {
-                            //Navigate to sign up
+                            // Navigate to sign up screen
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -164,11 +158,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
 
-                  // We will disable this message in default, when user and pass is incorrect we will trigger this message to user
+                  // Display error message if login fails
                   isLoginTrue
                       ? const Text(
-                          "Username or passowrd is incorrect",
-                          style: TextStyle(color: Colors.red),
+                          "Username or password is incorrect",
+                          style: TextStyle(color: Color.fromARGB(255, 238, 31, 16)),
                         )
                       : const SizedBox(),
                 ],

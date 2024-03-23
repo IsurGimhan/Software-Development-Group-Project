@@ -38,19 +38,19 @@ class _SignUpState extends State<SignUp> {
                     title: Text(
                       "Register New Account",
                       style:
-                          TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
                   ),
 
                   //As we assigned our controller to the textformfields
 
                   Container(
-                    margin: EdgeInsets.all(8),
+                    margin: const EdgeInsets.all(8),
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.deepPurple.withOpacity(.2)),
+                        color: const Color.fromARGB(129, 3, 170, 67).withOpacity(.2)),
                     child: TextFormField(
                       controller: username,
                       validator: (value) {
@@ -74,7 +74,7 @@ class _SignUpState extends State<SignUp> {
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.deepPurple.withOpacity(.2)),
+                        color: const Color.fromARGB(129, 3, 170, 67).withOpacity(.2)),
                     child: TextFormField(
                       controller: password,
                       validator: (value) {
@@ -110,7 +110,7 @@ class _SignUpState extends State<SignUp> {
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.deepPurple.withOpacity(.2)),
+                        color: const Color.fromARGB(129, 3, 170, 67).withOpacity(.2)),
                     child: TextFormField(
                       controller: confirmPassword,
                       validator: (value) {
@@ -147,7 +147,7 @@ class _SignUpState extends State<SignUp> {
                     width: MediaQuery.of(context).size.width * .9,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.deepPurple),
+                        color: const Color.fromARGB(213, 11, 65, 225).withOpacity(1)),
                     child: TextButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
@@ -187,7 +187,7 @@ class _SignUpState extends State<SignUp> {
                                 MaterialPageRoute(
                                     builder: (context) => const LoginScreen()));
                           },
-                          child: const Text("Login"))
+                          child: const Text("LOGIN"))
                     ],
                   )
                 ],

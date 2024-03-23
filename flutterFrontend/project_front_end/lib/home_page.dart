@@ -4,6 +4,7 @@ import 'package:project_front_end/about_us.dart';
 import 'package:project_front_end/leaf_image_taker.dart';
 import 'package:project_front_end/settings_page.dart';
 import 'package:project_front_end/tree_history.dart';
+import 'package:project_front_end/tree_diameter_taker.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -232,13 +233,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   GestureDetector(
-                    // onTap: () {
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => tree_diamter_take()),
-                    //   );
-                    // },
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const tree_diamter_take(
+                                  treeType: '',
+                                )),
+                      );
+                    },
                     child: Container(
                       height: 300,
                       width: 150,

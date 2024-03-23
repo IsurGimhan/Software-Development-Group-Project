@@ -30,8 +30,21 @@ class _HomeScreenState extends State<tree_diamter_take> {
     String treeType = widget.treeType;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ECOCHRONO'),
+        title: const Text('Image Select Panel',
+            style: TextStyle(
+              fontSize: 20, // Set font size
+              fontWeight: FontWeight.bold, // Set font weight
+              color: Color.fromARGB(255, 0, 0, 0),
+            )),
+        backgroundColor: const Color.fromARGB(255, 166, 233, 168),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(25),
+            bottomRight: Radius.circular(25),
+          ),
+        ),
       ),
+      backgroundColor: const Color.fromRGBO(149, 220, 137, 1),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
@@ -41,7 +54,12 @@ class _HomeScreenState extends State<tree_diamter_take> {
                 return StatefulBuilder(
                   builder: (context, setState) {
                     return AlertDialog(
-                      title: const Text('Enter Something'),
+                      title: const Text('Enter Something',
+                          style: TextStyle(
+                            fontSize: 25, // Set font size
+                            fontWeight: FontWeight.bold, // Set font weight
+                            color: Color.fromARGB(255, 0, 0, 0),
+                          )),
                       content: TextField(
                         controller: _textEditingController,
                         decoration: const InputDecoration(
@@ -57,20 +75,34 @@ class _HomeScreenState extends State<tree_diamter_take> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: const Text('Cancel'),
+                          child: const Text('Cancel',
+                              style: TextStyle(
+                                fontSize: 16, // Set font size
+                                fontWeight: FontWeight.bold, // Set font weight
+                                color: Color.fromARGB(255, 0, 0, 0),
+                              )),
                         ),
                         ElevatedButton(
                           onPressed: _isInputValid
                               ? () {
-                                String circumference = _textEditingController.text;
+                                  String circumference =
+                                      _textEditingController.text;
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => DataDisplayPage(treeType:treeType,circumference: circumference,)),
+                                    MaterialPageRoute(
+                                        builder: (context) => DataDisplayPage(
+                                              treeType: treeType,
+                                              circumference: circumference,
+                                            )),
                                   );
-
                                 }
                               : null,
-                          child: const Text('Submit'),
+                          child: const Text('Submit',
+                              style: TextStyle(
+                                fontSize: 16, // Set font size
+                                fontWeight: FontWeight.bold, // Set font weight
+                                color: Color.fromARGB(255, 0, 0, 0),
+                              )),
                         ),
                       ],
                     );
@@ -79,7 +111,12 @@ class _HomeScreenState extends State<tree_diamter_take> {
               },
             );
           },
-          child: const Text('Show Popup'),
+          child: const Text('Show Popup',
+              style: TextStyle(
+                fontSize: 16, // Set font size
+                fontWeight: FontWeight.bold, // Set font weight
+                color: Color.fromARGB(255, 0, 0, 0),
+              )),
         ),
       ),
     );

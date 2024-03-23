@@ -5,7 +5,6 @@ import 'package:project_front_end/leaf_image_taker.dart';
 import 'package:project_front_end/settings_page.dart';
 import 'package:project_front_end/tree_history.dart';
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -64,13 +63,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               child: Stack(
                 children: [
-                  const Center(
-                    child: Text(
-                      'EcoChrono',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 24,
-                      ),
+                  Center(
+                    child: Image.asset(
+                      'assets/logo.png', // Path to your image asset
+                      width: 120, // Adjust size as needed
+                      height: 120,
                     ),
                   ),
                   Positioned(
@@ -126,13 +123,13 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Container(
               // color: const Color.fromARGB(255, 73, 62, 62),
               width: 300,
-              height: 50,
+              height: 40,
               child: const Align(
-                alignment: Alignment.center,
+                alignment: Alignment.topCenter,
                 child: Text(
                   'EcoChrono',
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 35,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -141,11 +138,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Center(
             child: Container(
-              height: 120.0,
-              width: 120.0,
+              height: 150,
+              width: 200,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/Page01.png'),
+                  image: AssetImage('assets/logo.png'),
                   fit: BoxFit.fill,
                 ),
                 shape: BoxShape.rectangle,

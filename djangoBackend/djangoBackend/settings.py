@@ -23,13 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^4&vp5he#p)(_d%sj8!$eek30_#o3%jpwx@vgx^v8dykb@n-dw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+CSRF_TRUSTED_ORIGINS = ['https://vgg19-bpcfovoknq-uc.a.run.app']
+
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '192.168.0.103',
-    '10.0.2.2'
+    '10.0.2.2',
+    'vgg19-bpcfovoknq-uc.a.run.app'
 
 ]
 
@@ -44,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'tensorflow',
     'treeDetails.apps.TreedetailsConfig',
 ]
 
@@ -86,11 +88,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ECOCHRONO',
-        'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'SdgpGroupSE-87'
+        'PASSWORD': 'SdgpGroupSE-87',
+        'HOST': '35.244.40.45',
+        'PORT': '3306',
     }
 }
+
+
 
 
 # Password validation

@@ -86,12 +86,6 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "flutter_lorem",
-      "rootUri": "file:///C:/Users/Rakhitha/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lorem-2.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///C:/Users/Rakhitha/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17",
       "packageUri": "lib/",
@@ -284,13 +278,37 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "webview_flutter",
+      "rootUri": "file:///C:/Users/Rakhitha/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter-4.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "webview_flutter_android",
+      "rootUri": "file:///C:/Users/Rakhitha/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_android-3.15.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "webview_flutter_platform_interface",
+      "rootUri": "file:///C:/Users/Rakhitha/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_platform_interface-2.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "webview_flutter_wkwebview",
+      "rootUri": "file:///C:/Users/Rakhitha/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_wkwebview-3.12.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "project_front_end",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-03-23T14:50:00.625991Z",
+  "generated": "2024-03-23T14:55:25.704512Z",
   "generator": "pub",
   "generatorVersion": "3.2.6"
 }

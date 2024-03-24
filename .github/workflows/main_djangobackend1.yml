@@ -32,9 +32,10 @@ jobs:
         working-directory: djangoBackend
         run: pip install -r requirements.txt
         
-      - name: Running Tests
+      - name: Run Tests
         working-directory: djangoBackend
-        run: python manage.py test
+        run: |
+          python manage.py test
 
       - name: Zip artifact for deployment
         working-directory: djangoBackend

@@ -43,7 +43,7 @@ jobs:
         with:
           name: python-app
           path: |
-            release.zip
+            djangoBackend/release.zip
             !venv/
 
   deploy:

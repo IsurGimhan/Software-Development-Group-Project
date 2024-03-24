@@ -36,14 +36,14 @@ class TreeDetailsTestCase(TestCase):
         # Check the response content
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'application/json')  # Check Content-Type header
-        self.assertEqual(response.json()['title'], "Test Title")
-        self.assertEqual(response.json()['description'], "Test Description")
+        self.assertEqual(response['title'], "Test Title")
+        self.assertEqual(response['description'], "Test Description")
 
         # Calculate expected tree age
         expected_age = round((100 / 3.14) * 2.0, 2)
 
         # Check if the calculated age matches the expected age
-        self.assertEqual(float(response.json()['tree age']), expected_age)
+        self.assertEqual(float(response['tree age']), expected_age)
 
     @patch('requests.get')
     @patch('treeDetails.models.TreeSpeciesDetail.objects.get')
@@ -74,11 +74,11 @@ class TreeDetailsTestCase(TestCase):
         # Check the response content
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'application/json')  # Check Content-Type header
-        self.assertEqual(response.json()['title'], "Test Title")
-        self.assertEqual(response.json()['description'], "Test Description")
+        self.assertEqual(response['title'], "Test Title")
+        self.assertEqual(response['description'], "Test Description")
 
         # Calculate expected tree age using the default growth factor (1.0)
         expected_age = round(100 / 3.14, 2)
 
         # Check if the calculated age matches the expected age
-        self.assertEqual(float(response.json()['tree age']), expected_age)
+        self.assertEqual(float(response['tree age']), expected_age)

@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.http import HttpRequest
 from unittest.mock import patch, MagicMock
 from .views import get_tree_details
-from .models import model
+from .models import TreeSpeciesDetail
 
 class TreeDetailsTestCase(TestCase):
     @patch('requests.get')
@@ -61,7 +61,7 @@ class TreeDetailsTestCase(TestCase):
         mock_requests_get.return_value.json.return_value = wikipedia_response
 
         # Mock behavior for when the tree species detail is not found
-        mock_get.side_effect = model.TreeSpeciesDetail.DoesNotExist
+        mock_get.side_effect =TreeSpeciesDetail.DoesNotExist
 
         # Create a request object
         request = HttpRequest()

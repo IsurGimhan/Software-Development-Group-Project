@@ -21,7 +21,7 @@ class UploadImageViewTestCase(TestCase):
     @patch('requests.post')
     def test_upload_image_failure(self, mock_post):
         mock_post.side_effect = Exception('Mocked error')
-        with open('path_to_your_image_file', 'rb') as image_file:
+        with open('sampleTestImg2.jpg', 'rb') as image_file:
             response = self.client.post(reverse('upload_image'), {'image': SimpleUploadedFile('test_image.jpg', image_file.read())})
         self.assertEqual(response.status_code, 500)
         self.assertIn('error', response.content.decode())

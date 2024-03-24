@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 import requests
 from django.views.decorators.csrf import csrf_exempt
+from requests.exceptions import RequestException
 
 @csrf_exempt
 def upload_image(request):
@@ -12,6 +13,6 @@ def upload_image(request):
             response.raise_for_status()  # Raise an exception for bad status codes
             ml_result = response.text.strip('"')
             return JsonResponse(ml_result, safe=False)
-        except requests.exceptions.RequestException as e:
+        except RequestException as e:
             return JsonResponse({'error': str(e)}, status=500)  # Return error message as JSON
     return JsonResponse({'error': 'Invalid request'}, status=400)

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.http import HttpRequest
+from django.http import HttpRequest, JsonResponse
 from unittest.mock import patch, MagicMock
 from .views import get_tree_details
 from .models import TreeSpeciesDetail
@@ -35,6 +35,7 @@ class TreeDetailsTestCase(TestCase):
 
         # Check the response content
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['Content-Type'], 'application/json')  # Check Content-Type header
         self.assertEqual(response.json()['title'], "Test Title")
         self.assertEqual(response.json()['description'], "Test Description")
 
@@ -61,7 +62,7 @@ class TreeDetailsTestCase(TestCase):
         mock_requests_get.return_value.json.return_value = wikipedia_response
 
         # Mock behavior for when the tree species detail is not found
-        mock_get.side_effect =TreeSpeciesDetail.DoesNotExist
+        mock_get.side_effect = TreeSpeciesDetail.DoesNotExist
 
         # Create a request object
         request = HttpRequest()
@@ -72,6 +73,7 @@ class TreeDetailsTestCase(TestCase):
 
         # Check the response content
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['Content-Type'], 'application/json')  # Check Content-Type header
         self.assertEqual(response.json()['title'], "Test Title")
         self.assertEqual(response.json()['description'], "Test Description")
 

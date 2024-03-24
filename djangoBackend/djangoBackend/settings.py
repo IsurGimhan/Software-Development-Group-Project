@@ -33,7 +33,8 @@ ALLOWED_HOSTS = [
     '192.168.0.103',
     '10.0.2.2',
     'vgg19-bpcfovoknq-uc.a.run.app',
-    'djangobackend1.azurewebsites.net'
+    'djangobackend1.azurewebsites.net',
+    '*'
 
 ]
 

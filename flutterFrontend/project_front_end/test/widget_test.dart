@@ -1,30 +1,22 @@
-// // This is a basic Flutter widget test.
-// //
-// // To perform an interaction with a widget in your test, use the WidgetTester
-// // utility in the flutter_test package. For example, you can send tap and scroll
-// // gestures. You can also use WidgetTester to find child widgets in the widget
-// // tree, read text, and verify that the values of widget properties are correct.
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:project_front_end/main.dart'; // Assuming your main file is named main.dart
 
-// import 'package:flutter/material.dart';
-// import 'package:flutter_test/flutter_test.dart';
+void main() {
+  testWidgets('MyHomePage UI Test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
 
-// import 'package:project_front_end/main.dart';
+    // Verify that 'EcoChrono' text is present.
+    expect(find.text('EcoChrono'), findsOneWidget);
 
-// void main() {
-//   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-//     // Build our app and trigger a frame.
-//     await tester.pumpWidget(const MyApp());
+    // Verify that 'CALCULATE THE TREE AGE' text is present.
+    expect(find.text('CALCULATE THE TREE AGE'), findsOneWidget);
 
-//     // Verify that our counter starts at 0.
-//     expect(find.text('0'), findsOneWidget);
-//     expect(find.text('1'), findsNothing);
+    // Verify that 'TREE DIAMETER' text is present.
+    expect(find.text('TREE DIAMETER'), findsOneWidget);
 
-//     // Tap the '+' icon and trigger a frame.
-//     await tester.tap(find.byIcon(Icons.add));
-//     await tester.pump();
-
-//     // Verify that our counter has incremented.
-//     expect(find.text('0'), findsNothing);
-//     expect(find.text('1'), findsOneWidget);
-//   });
-// }
+    // Verify that 'PREVIOUS TREE HISTORY' text is present.
+    expect(find.text('PREVIOUS TREE HISTORY'), findsOneWidget);
+  });
+}

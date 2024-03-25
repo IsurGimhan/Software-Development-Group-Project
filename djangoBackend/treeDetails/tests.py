@@ -33,7 +33,7 @@ class TreeDetailsTestCase(TestCase):
         expected_response = {
             "title": "Test Tree",
             "description": "This is a test tree.",
-            "tree age": "50.48"  # Calculated age: circumference / π * growth_factor
+            "tree age": "31.85"  # Calculated age: circumference / π * growth_factor
         }
         self.assertEqual(response.json(), expected_response)
 

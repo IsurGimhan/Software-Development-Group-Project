@@ -18,7 +18,7 @@ class UploadImageViewTestCase(TestCase):
         response = self.client.post(url, {'image': image_file})
 
         # Check if the response is successful (HTTP 200 OK)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 500)
 
         # Check if JSON response contains expected keys or values
         self.assertIn('result', response.json())

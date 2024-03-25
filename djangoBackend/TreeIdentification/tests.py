@@ -1,5 +1,9 @@
 from django.test import TestCase, Client
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.urls import reverse
+
+
+url = 'TreeIdentification/upload_image/'
 
 class UploadImageViewTestCase(TestCase):
     def setUp(self):
@@ -11,7 +15,7 @@ class UploadImageViewTestCase(TestCase):
         image_file = SimpleUploadedFile('test_image.png', image_data, content_type='image/png')
 
         # Make a POST request to the view
-        response = self.client.post('TreeIdentification/upload_image/', {'image': image_file})
+        response = self.client.post(url, {'image': image_file})
 
         # Check if the response is successful (HTTP 200 OK)
         self.assertEqual(response.status_code, 200)
@@ -21,7 +25,7 @@ class UploadImageViewTestCase(TestCase):
 
     def test_upload_image_failure(self):
         # Make a GET request to the view (which is an invalid request)
-        response = self.client.get('TreeIdentification/upload_image/')
+        response = self.client.get(url)
 
         # Check if the response status code is 400 (Bad Request)
         self.assertEqual(response.status_code, 400)

@@ -6,7 +6,7 @@ from .views import get_tree_details
 class TreeDetailsTestCase(TestCase):
     def setUp(self):
         # Create a sample tree species detail for testing
-        TreeSpeciesDetail.objects.create(specie_name='Test Tree', specie_growth_factor=2.0)
+        TreeSpeciesDetail.objects.create(specie_name='Test Tree', specie_growth_factor=1.0)
 
     @patch('requests.get')
     def test_get_tree_details(self, mock_get):

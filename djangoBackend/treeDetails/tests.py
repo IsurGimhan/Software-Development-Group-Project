@@ -1,87 +1,67 @@
-# from django.test import TestCase
-# from django.http import HttpRequest, JsonResponse
-# from unittest.mock import patch, MagicMock
+from django.test import TestCase
+from unittest.mock import patch
+from treeDetails.models import TreeSpeciesDetail
+from .views import get_tree_details
 
-# from networkx import expected_degree_graph
-# from .views import get_tree_details
-# from .models import TreeSpeciesDetail
+class TreeDetailsTestCase(TestCase):
+    def setUp(self):
+        # Create a sample tree species detail for testing
+        TreeSpeciesDetail.objects.create(specie_name='Test Tree', specie_growth_factor=2.0)
 
-# class TreeDetailsTestCase(TestCase):
-#     @patch('requests.get')
-#     @patch('treeDetails.models.TreeSpeciesDetail.objects.get')
-#     def test_get_tree_details(self, mock_get, mock_requests_get):
-#         # Mock data for the Wikipedia API response
-#         wikipedia_response = {
-#             "query": {
-#                 "pages": {
-#                     "1": {
-#                         "title": "Test Title",
-#                         "extract": "Test Description"
-#                     }
-#                 }
-#             }
-#         }
-#         mock_requests_get.return_value.json.return_value = wikipedia_response
+    @patch('requests.get')
+    def test_get_tree_details(self, mock_get):
+        # Mocking the response from Wikipedia API
+        mock_response = {
+            "query": {
+                "pages": {
+                    "1": {
+                        "title": "Test Tree",
+                        "extract": "This is a test tree."
+                    }
+                }
+            }
+        }
+        mock_get.return_value.json.return_value = mock_response
 
-#         # Mock data for the TreeSpeciesDetail object
-#         mock_tree_species = MagicMock()
-#         mock_tree_species.specie_growth_factor = 2.0
-#         mock_get.return_value = mock_tree_species
+        # Make a request to the view function
+        response = self.client.get('/treeDetails/Test%20Tree/100')
 
-#         # Create a request object
-#         request = HttpRequest()
-#         request.method = 'GET'
+        # Assert that the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
 
-#         # Call the view function
-#         response = get_tree_details(request, "Test Title", "100")
+        # Assert the response content
+        expected_response = {
+            "title": "Test Tree",
+            "description": "This is a test tree.",
+            "tree age": "50.48"  # Calculated age: circumference / π * growth_factor
+        }
+        self.assertEqual(response.json(), expected_response)
 
-#         self.assertEqual(response.status_code, 200)
-#         self.assertEqual(response['Content-Type'], 'application/json')  # Check Content-Type header
-#         self.assertEqual(response['title'], "Test Title")
-#         self.assertEqual(response['description'], "Test Description")
-#         self.assertEqual(float(response['tree age']), expected_degree_graph)
+    @patch('requests.get')
+    def test_tree_details_default_growth_factor(self, mock_get):
+        # Mocking the response from Wikipedia API
+        mock_response = {
+            "query": {
+                "pages": {
+                    "1": {
+                        "title": "Unknown Tree",
+                        "extract": "This is an unknown tree."
+                    }
+                }
+            }
+        }
+        mock_get.return_value.json.return_value = mock_response
 
+        # Make a request to the view function for a tree species not in the database
+        response = self.client.get('/treeDetails/Unknown%20Tree/100')
 
-#         # Calculate expected tree age
-#         expected_age = round((100 / 3.14) * 2.0, 2)
+        # Assert that the response status code is 200 (OK)
+        self.assertEqual(response.status_code, 200)
 
-#         # Check if the calculated age matches the expected age
-#         self.assertEqual(float(response['tree age']), expected_age)
-
-#     @patch('requests.get')
-#     @patch('treeDetails.models.TreeSpeciesDetail.objects.get')
-#     def test_get_tree_details_default_growth_factor(self, mock_get, mock_requests_get):
-#         # Mock data for the Wikipedia API response
-#         wikipedia_response = {
-#             "query": {
-#                 "pages": {
-#                     "1": {
-#                         "title": "Test Title",
-#                         "extract": "Test Description"
-#                     }
-#                 }
-#             }
-#         }
-#         mock_requests_get.return_value.json.return_value = wikipedia_response
-
-#         # Mock behavior for when the tree species detail is not found
-#         mock_get.side_effect = TreeSpeciesDetail.DoesNotExist
-
-#         # Create a request object
-#         request = HttpRequest()
-#         request.method = 'GET'
-
-#         # Call the view function
-#         response = get_tree_details(request, "Test Title", "100")
-
-#         # Check the response content
-#         self.assertEqual(response.status_code, 200)
-#         self.assertEqual(response['Content-Type'], 'application/json')  # Check Content-Type header
-#         self.assertEqual(response['title'], "Test Title")
-#         self.assertEqual(response['description'], "Test Description")
-
-#         # Calculate expected tree age using the default growth factor (1.0)
-#         expected_age = round(100 / 3.14, 2)
-
-#         # Check if the calculated age matches the expected age
-#         self.assertEqual(float(response['tree age']), expected_age)
+        # Assert the response content when tree species detail not found in the database
+        expected_response = {
+            "title": "Unknown Tree",
+            "description": "This is an unknown tree.",
+            "tree age": "31.85"  # Assuming default growth_factor is 1.0
+        }
+        self.assertEqual(response.json(), expected_response)

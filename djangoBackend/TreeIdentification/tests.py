@@ -3,7 +3,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 
 
-url = 'TreeIdentification/upload_image/'
+url = '/TreeIdentification/upload_image/'
 
 class UploadImageViewTestCase(TestCase):
     def setUp(self):

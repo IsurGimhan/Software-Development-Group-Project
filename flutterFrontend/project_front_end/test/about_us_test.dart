@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:project_front_end/about_us.dart';
 import 'package:project_front_end/web_view_container.dart';
-
 void main() {
   testWidgets('AboutUS widget test', (WidgetTester tester) async {
     // Build our widget and trigger a frame.
     await tester.pumpWidget(MaterialApp(home: AboutUS(title: 'Test Title')));
+
+    // Wait for a moment to ensure text rendering
+    await tester.pump(Duration(milliseconds: 500));
 
     // Verify that the title text is rendered.
     expect(find.text('ABOUT US'), findsOneWidget);

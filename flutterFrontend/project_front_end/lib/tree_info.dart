@@ -33,6 +33,8 @@ class _DataDisplayPageState extends State<DataDisplayPage> {
 
   @override
   Widget build(BuildContext context) {
+    print(treeType);
+    print(circumference);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Data Display'),

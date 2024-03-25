@@ -28,6 +28,7 @@ class _HomeScreenState extends State<tree_diamter_take> {
   @override
   Widget build(BuildContext context) {
     String treeType = widget.treeType;
+    print("isuru $treeType");
     return Scaffold(
       appBar: AppBar(
         title: const Text('ECOCHRONO'),

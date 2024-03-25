@@ -24,7 +24,7 @@ class TreeDetailsTestCase(TestCase):
         mock_get.return_value.json.return_value = mock_response
 
         # Make a request to the view function
-        response = self.client.get('/treeDetails/Test%20Tree/100')
+        response = self.client.get('/treeDetails/Test%20Tree/100',follow=True)
 
         # Assert that the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)
@@ -53,7 +53,7 @@ class TreeDetailsTestCase(TestCase):
         mock_get.return_value.json.return_value = mock_response
 
         # Make a request to the view function for a tree species not in the database
-        response = self.client.get('/treeDetails/Unknown%20Tree/100')
+        response = self.client.get('/treeDetails/Unknown%20Tree/100',follow=True)
 
         # Assert that the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)

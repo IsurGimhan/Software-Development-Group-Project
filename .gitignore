@@ -3,3 +3,6 @@ ML_model/datasets/
 ML_model/TraindVGG16Model.joblib
 ML_model/vgg16.h5
 djangoBackend/modelVGG19.pkl
+ML_model/modelVGG19.pkl
+EcoChrono-Backend/modelVGG19.pkl
+ML_model/modelVGG16.pkl

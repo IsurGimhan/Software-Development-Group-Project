@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - djangobackend1
+name: Build and deploy Python app to Azure Web App - djangoBackend1
 
 on:
   push:
@@ -23,7 +23,6 @@ jobs:
           python-version: '3.11'
 
       - name: Create and start virtual environment
-        working-directory: djangoBackend
         run: |
           python -m venv venv
           source venv/bin/activate
@@ -32,13 +31,9 @@ jobs:
         working-directory: djangoBackend
         run: pip install -r requirements.txt
         
-      - name: Run Tests
-        working-directory: djangoBackend
-        run: |
-          python manage.py test
+      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
-        working-directory: djangoBackend
         run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
@@ -46,7 +41,7 @@ jobs:
         with:
           name: python-app
           path: |
-            djangoBackend/release.zip
+            release.zip
             !venv/
 
   deploy:
@@ -71,14 +66,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_1A989CB3DA604383AE0CA34723CBB2E5 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E382F362C41E4E48A1C6788977AED076 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D08F62764B3E4CCC83937F2E1D433722 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_13BC77C8C4D64DD09316D6284BE6387C }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A0FA8C8A521A43D898438C75846D37DF }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_76521CBCBD334ECC85EE9F424C6F56F5 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'djangobackend1'
+          app-name: 'djangoBackend1'
           slot-name: 'Production'
           

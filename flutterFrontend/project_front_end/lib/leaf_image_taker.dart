@@ -27,12 +27,14 @@ class _HomeScreenState extends State<leaf_image_take> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Image Select Panel',
-            style: TextStyle(
-              fontSize: 20, // Set font size
-              fontWeight: FontWeight.bold, // Set font weight
-              color: Color.fromARGB(255, 0, 0, 0),
-            )),
+        title: const Text(
+          'Image Select Panel',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 0, 0, 0),
+          ),
+        ),
         backgroundColor: const Color.fromARGB(255, 166, 233, 168),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -43,104 +45,114 @@ class _HomeScreenState extends State<leaf_image_take> {
       ),
       backgroundColor: const Color.fromRGBO(149, 220, 137, 1),
       body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          selectedImage != null
-              ? Image.file(selectedImage!)
-              : const Text('No image is selected',
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            selectedImage != null
+                ? Image.file(selectedImage!)
+                : Column(
+                    children: [
+                      Image.asset(
+                        'assets/logo.png', // Replace 'no_image_selected.png' with the path to your placeholder image asset
+                        width: 300, // Adjust width as needed
+                        height: 200, // Adjust height as needed
+                      ),
+                      const SizedBox(height: 20),
+                      const Text(
+                        'No image is selected',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
+                      ),
+                    ],
+                  ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+              ),
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (BuildContext context) {
+                    return Container(
+                      height: 200,
+                      width: 500,
+                      color: const Color.fromARGB(255, 166, 233, 168),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {
+                              selectImageFromGallery();
+                            },
+                            icon: const Icon(Icons.photo,
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                            label: const Text('Browse Gallery',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 0, 0, 0))),
+                          ),
+                          const Text('OR'),
+                          ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 255, 255, 255),
+                            ),
+                            onPressed: () {
+                              captureImageFromCamera();
+                            },
+                            icon: const Icon(Icons.camera_alt,
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                            label: const Text('Use Camera',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 0, 0, 0))),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+              child: const Text('Select Image',
                   style: TextStyle(
-                    fontSize: 16, // Set font size
-                    fontWeight: FontWeight.bold, // Set font weight
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 0, 0, 0),
                   )),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor:
-                  const Color.fromARGB(255, 255, 255, 255), // Set button color
             ),
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                isScrollControlled: true,
-                builder: (BuildContext context) {
-                  return Container(
-                    height: 200,
-                    width: 500,
-                    color: const Color.fromARGB(255, 166, 233, 168),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // gallery selecting button
-                        ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(
-                                255, 255, 255, 255), // Set button color
-                          ),
-                          onPressed: () {
-                            selectImageFromGallery();
-                          },
-                          icon: const Icon(Icons.photo,
-                              color: Color.fromARGB(255, 0, 0, 0)),
-                          label: const Text('Browse Gallery',
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 0, 0, 0))),
-                        ),
-                        const Text('OR'),
-                        // camera selecting button
-                        ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(
-                                255, 255, 255, 255), // Set button color
-                          ),
-                          onPressed: () {
-                            captureImageFromCamera();
-                          },
-                          icon: const Icon(Icons.camera_alt,
-                              color: Color.fromARGB(255, 0, 0, 0)),
-                          label: const Text('Use Camera',
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 0, 0, 0))),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-            },
-            child: const Text('Select Image',
-                style: TextStyle(
-                  fontSize: 16, // Set font size
-                  fontWeight: FontWeight.bold, // Set font weight
-                  color: Color.fromARGB(255, 0, 0, 0),
-                )),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor:
-                  const Color.fromARGB(255, 255, 255, 255), // Set button color
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+              ),
+              onPressed: () async {
+                var treeType = await sendImageToBackend(selectedImage!);
+                // ignore: use_build_context_synchronously
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => tree_diamter_take(treeType: treeType),
+                  ),
+                );
+              },
+              child: const Text("Next page",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  )),
             ),
-            onPressed: () async {
-              var treeType = await sendImageToBackend(selectedImage!);
-              // ignore: use_build_context_synchronously
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => tree_diamter_take(treeType: treeType),
-                ),
-              );
-            },
-            child: const Text("Next page",
-                style: TextStyle(
-                  fontSize: 16, // Set font size
-                  fontWeight: FontWeight.bold, // Set font weight
-                  color: Color.fromARGB(255, 0, 0, 0),
-                )),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }
 
-  // this method will select the image from the gallery and save it to the returnedImage variable
   Future selectImageFromGallery() async {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -151,7 +163,6 @@ class _HomeScreenState extends State<leaf_image_take> {
     });
   }
 
-  // this method will capture the image from the camera and save it to the returnedImage variable
   Future captureImageFromCamera() async {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.camera);

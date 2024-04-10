@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'treeDetails.apps.TreedetailsConfig',
+    'TreeIdentification',
 ]
 
 MIDDLEWARE = [
